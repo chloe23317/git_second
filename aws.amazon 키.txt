@@ -1,0 +1,13 @@
+aws.amazon.com
+
+pbluser(사용자)
+DevOps(그룹)
+AKIA4VYS7JHF47PPDCUK(액세스 키 ID)
+LQWjo4nJvkqkk99POKJZL1+7KIQjpBMnekNJvSC5(비밀 액세스 키)
+
+
+EC2인스턴스
+MyServer(이름)
+i-07916cf45e8300727(인스턴스 ID)	
+3.36.93.142(퍼블릭 IPv4 주소)
+ec2-3-36-93-142.ap-northeast-(퍼블릭 IPv4 DNS)

@@ -1,0 +1,207 @@
+로컬pc를 cmd를 이용하여 git에 올림
+
+
+git bash 열기
+
+cd /c/Users/Admin/Desktop
+
+/* 연결 */
+ssh -i pbl_keypair.pem ec2-user@13.125.233.10
+
+
+/* 파일 다운로드 */
+sudo yum -y update
+sudo wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh
+
+bash Anaconda3-2021.11-Linux-x86_64.sh
+
+conda create --name "python3.9" python="3.9"
+
+/* 가상환경 확인 */
+conda info --envs
+
+/* 가상환경 활성화 */
+conda activate python 3.9
+
+
+===========================================================================
+파이참 다운로드 + 설치 < no 인터프리터 옆 ...을 클릭, 인터프리터에 python.exe 클릭하고 만듦
+
+cmd에서
+cd C:\mimmi\PPL2201
+
+/* 디렉토리 만듦 */
+mkdir awsproject 
+
+cd awsproject
+
+git bash에서
+/* 파이썬 3.9버전의 awspython(이름)라는 가상환경 만듦 */ 
+conda create --name "awspython" python="3.9"
+
+ > 여기서 만약 에러가 나면 내pc > 속성 > 고급 시스템 설정 > 환경변수 
+     > 시스템변수 path에 아나콘다 설치된 경로(C:\Users\Admin\anaconda3, C:\Users\Admin\anaconda3\Library, C:\Users\Admin\anaconda3\Scripts) 추가
+
+/* 가상환경 확인 */
+conda info --envs
+
+/* 가상환경 활성화 */           cf) 비활성화 : conda activate python 3.9
+conda activate python 3.9
+
+/* 새로운 프롬프터 열고 방금 만든 가상환경 활성화 */ 
+conda activate awspython
+
+파이참에서 
+firstweb > new > python 파일 만듦
+
+cmd에서 
+C:\Users\Admin>cd C:\mimmi\PPL2201\firstweb
+
+C:\mimmi\PPL2201\firstweb>conda activate awspython
+
+(awspython) C:\mimmi\PPL2201\firstweb>python first.py
+hello
+
+
+git bash에서 
+conda create --name "awspbl" python="3.9"
+
+
+==============================================================================
+
+1. cmd에서 
+cd C:\PBL22\PPL2201
+
+C:\PBL22\PPL2201>git config --global user.name "Mimmi"
+C:\PBL22\PPL2201>git config --global user.email omnipotent1021@gmail.com
+C:\PBL22\PPL2201>git config user.name
+Mimmi
+
+C:\PBL22\PPL2201>git config user.email
+omnipotent1021@gmail.com
+
+
+2. 새로운 cmd에서 
+cd C:\PBL22\PPL2201\firstweb
+
+C:\mimmi\PPL2201\firstweb>conda activate awspython
+
+(awspython) C:\mimmi\PPL2201\firstweb>python first.py
+hello
+
+
+새로운 cmd에서 
+cd C:\PBL22\PPL2201\firstweb
+
+/* Initialized empty Git repository in C:/mimmi/PPL2201/firstweb/.git/ */ 
+git init
+
+git add . 
+
+git commit -m "first commit"
+
+git branch -M main
+
+git remote add or igin https://github.com/omnipotent21/awspbl.git
+
+
+3. git bash에서 
+cd /c/Users/Admin/Desktop
+
+/* 연결 */
+ssh -i pbl_keypair.pem ec2-user@13.125.233.10
+
+/* 깃설치 */
+sudo yum install git -y
+
+/* 깃 클론 */
+git clone https://github.com/omnipotent21/awspbl.git
+
+(base) [ec2-user@ip-172-31-6-43 firstweb]$ aws configure
+
+AWS Access Key ID [None]: AKIATAHYBX2SG2GS7KHL
+AWS Secret Access Key [None]: VtrsCJNpVIGeuA08UQMkV61+VnFo2qRhxWTVbdM
+Default region name [None]: ap-northeast-2
+Default output format [None]: json
+
+
+
+
+
+
+
+
+
+git bash에서
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ ls
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ git
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ ls
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ git pull
+
+
+
+cmd에서
+c:\mimmi\PPL2201>cd firstweb
+c:\mimmi\PPL2201\firstweb>git init
+c:\mimmi\PPL2201\firstweb>git add .
+c:\mimmi\PPL2201\firstweb>git commit -m "first commit"
+c:\mimmi\PPL2201\firstweb>git branch -M main
+c:\mimmi\PPL2201\firstweb>git remote add origin https://github.com/omnipotent21/awspbl.git
+c:\mimmi\PPL2201\firstweb>git push -u origin main
+
+
+
+git bash에서
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ dir
+first.py
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ python first.py
+hello
+
+
+
+
+
+============================================================================
+cmd에서
+(base) [ec2-user@ip-172-31-6-43 ~]$ cd firstweb
+(base) [ec2-user@ip-172-31-6-43 firstweb]$ cd awspbl/
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ git pull
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ ls
+app.py  first.py
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ conda info --envs
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ conda activate awspbl
+(awspbl) [ec2-user@ip-172-31-6-43 awspbl]$ python app.py
+        /* flask 없을 때 에러남 > 설치 (awspbl) [ec2-user@ip-172-31-6-43 awspbl]$ pip install flask */
+(awspbl) [ec2-user@ip-172-31-6-43 awspbl]$ python app.py
+
+
+git bash에서
+c:\mimmi\PPL2201\firstweb>git add .
+c:\mimmi\PPL2201\firstweb>git commit -m "add app.py"  /* local에 업로딩, git hub에 올라가지 않음 */
+c:\mimmi\PPL2201\firstweb>git push                           /* global에 올라감 */ 
+c:\mimmi\PPL2201\firstweb>git add .
+c:\mimmi\PPL2201\firstweb>git commit -m "test"   
+c:\mimmi\PPL2201\firstweb>git push                    /* http://13.125.233.10:8080/로 들어가면 hello Flask:D hohoho이 보임 */
+cmd에서
+(base) [ec2-user@ip-172-31-6-43 awspbl]$ git pull
+
+
+
+
+
+=============================================================================
+mysql 과 aws 연결
+
+mysql 워크벤치에 awspbl 계정 추가 : hostname에 aws 엔드포인트(database-1.cixtoylkfxtc.ap-northeast-2.rds.amazonaws.com)를 넣어줌
+                                              커넥팅할 때 비번은 aws 비번, 디폴트 스키마 : pbldb
+
+생성된 계정에서 
+use mysql;
+show tables;
+create database pbldb;
+
+
+파이참에서 dbtest.py 생성
+import pymysql
+conn = pymysql.connect(host = 'database-1.cixtoylkfxtc.ap-northeast-2.rds.amazonaws.com', db = 'pbldb', port = 3306, password = 'anl1126^^', user = 'admin')
+print(conn)
